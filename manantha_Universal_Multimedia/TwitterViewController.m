@@ -29,12 +29,18 @@
     
 }
 
+/*
+ Set refresh control for timeline when tableview gets loaded
+ */
 -(void) viewDidLoad {
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tweetTableView addSubview:refreshControl];
 }
 
+/*
+ Update the timeline when the user refreshes screen by pulling down
+ */
 - (void)refresh:(UIRefreshControl *)refreshControl {
     [self getTimelineTweets];
     [self.tweetTableView reloadData];
