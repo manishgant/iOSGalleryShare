@@ -6,8 +6,13 @@
 //  Copyright (c) 2015 Manishgant. All rights reserved.
 //
 
-#ifndef manantha_Universal_Multimedia_MediaPreview_h
-#define manantha_Universal_Multimedia_MediaPreview_h
+#import  <UIKit/UIKit.h>
 
+@class AVCaptureSession;
 
-#endif
+@interface MediaPreview : UIView
+
+@property (nonatomic) AVCaptureSession *session;
+
+@end
+

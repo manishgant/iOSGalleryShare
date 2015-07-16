@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C223D09A-3F1B-487E-8E26-8DAB63C7BFF7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>manantha_Universal_Multimedia</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>174CBA468D882A93588EF5F60988827C974E1A8B</key>
+		<string>https://github.com/manishgant/iOSGalleryShare.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>manantha_Universal_Multimedia.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>174CBA468D882A93588EF5F60988827C974E1A8B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/manishgant/iOSGalleryShare.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>174CBA468D882A93588EF5F60988827C974E1A8B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>174CBA468D882A93588EF5F60988827C974E1A8B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>manantha_Universal_Multimedia</string>
+		</dict>
+	</array>
+</dict>
+</plist>

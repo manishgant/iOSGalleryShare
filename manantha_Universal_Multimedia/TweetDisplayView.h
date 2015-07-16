@@ -6,8 +6,15 @@
 //  Copyright (c) 2015 Manishgant. All rights reserved.
 //
 
-#ifndef manantha_Universal_Multimedia_TweetDisplayView_h
-#define manantha_Universal_Multimedia_TweetDisplayView_h
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
 
-#endif
+@interface TwitterDisplayView : UIViewController<UIWebViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIWebView *displayTweetWebView;
+
+@property (weak,nonatomic) NSURL *imageURL;
+@end

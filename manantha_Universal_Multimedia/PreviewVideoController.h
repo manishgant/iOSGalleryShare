@@ -6,8 +6,32 @@
 //  Copyright (c) 2015 Manishgant. All rights reserved.
 //
 
-#ifndef manantha_Universal_Multimedia_PreviewVideoController_h
-#define manantha_Universal_Multimedia_PreviewVideoController_h
+
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
+
+/*
+ Initialize the elements required to display the selected image
+ from the TableView in a separate View.
+ */
+
+@interface PreviewVideoController: UIViewController<UIScrollViewDelegate>
+
+@property (weak, nonatomic) NSURL *opURL;
+
+@property (weak, nonatomic) IBOutlet UIImageView *videoThumbnailView;
+
+@property (weak, nonatomic) IBOutlet UIImage *videoThumbnail;
+
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 
-#endif
+
+
+
+@end

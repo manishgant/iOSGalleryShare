@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD1752821B4B51BC000EB8DF /* MediaPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1752811B4B51BC000EB8DF /* MediaPreview.m */; };
+		FD1752851B4B7CC6000EB8DF /* PreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1752841B4B7CC6000EB8DF /* PreviewController.m */; };
+		FD1752881B4BA695000EB8DF /* PreviewVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1752871B4BA695000EB8DF /* PreviewVideoController.m */; };
 		FD19F7291B48496600636394 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F7281B48496600636394 /* main.m */; };
 		FD19F72C1B48496600636394 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F72B1B48496600636394 /* AppDelegate.m */; };
-		FD19F72F1B48496600636394 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F72E1B48496600636394 /* FirstViewController.m */; };
-		FD19F7321B48496600636394 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F7311B48496600636394 /* SecondViewController.m */; };
+		FD19F72F1B48496600636394 /* ImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F72E1B48496600636394 /* ImagesViewController.m */; };
+		FD19F7321B48496600636394 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F7311B48496600636394 /* CameraViewController.m */; };
 		FD19F7351B48496600636394 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD19F7331B48496600636394 /* Main.storyboard */; };
 		FD19F7371B48496600636394 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD19F7361B48496600636394 /* Images.xcassets */; };
 		FD19F73A1B48496600636394 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD19F7381B48496600636394 /* LaunchScreen.xib */; };
 		FD19F7461B48496600636394 /* manantha_Universal_MultimediaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F7451B48496600636394 /* manantha_Universal_MultimediaTests.m */; };
+		FD19F7501B48497400636394 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F74F1B48497400636394 /* AVKit.framework */; };
+		FD19F7521B48497B00636394 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7511B48497B00636394 /* AVFoundation.framework */; };
+		FD19F7541B48498E00636394 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7531B48498E00636394 /* UIKit.framework */; };
+		FD19F7561B48529D00636394 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7551B48529D00636394 /* AssetsLibrary.framework */; };
+		FD19F7591B4856EF00636394 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7571B4856EF00636394 /* Photos.framework */; };
+		FD19F75A1B4856EF00636394 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7581B4856EF00636394 /* PhotosUI.framework */; };
+		FD19F75E1B49AF7F00636394 /* FullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F75D1B49AF7F00636394 /* FullViewController.m */; };
+		FD19F7601B4A11B800636394 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F75F1B4A11B800636394 /* MediaPlayer.framework */; };
+		FDE52B941B55D5BA0066C728 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE52B931B55D5BA0066C728 /* TwitterViewController.m */; };
+		FDE52B961B55D8F00066C728 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE52B951B55D8F00066C728 /* Social.framework */; };
+		FDE52B981B55D8F80066C728 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE52B971B55D8F80066C728 /* Accounts.framework */; };
+		FDE52B9B1B5622560066C728 /* TweetDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE52B9A1B5622560066C728 /* TweetDisplayView.m */; };
+		FDE52B9D1B574CBE0066C728 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE52B9C1B574CBE0066C728 /* Twitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,21 +44,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD1752801B4B51A6000EB8DF /* MediaPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaPreview.h; sourceTree = "<group>"; };
+		FD1752811B4B51BC000EB8DF /* MediaPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPreview.m; sourceTree = "<group>"; };
+		FD1752831B4B7CB3000EB8DF /* PreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewController.h; sourceTree = "<group>"; };
+		FD1752841B4B7CC6000EB8DF /* PreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewController.m; sourceTree = "<group>"; };
+		FD1752861B4BA653000EB8DF /* PreviewVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreviewVideoController.h; sourceTree = "<group>"; };
+		FD1752871B4BA695000EB8DF /* PreviewVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewVideoController.m; sourceTree = "<group>"; };
 		FD19F7231B48496600636394 /* manantha_Universal_Multimedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manantha_Universal_Multimedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19F7271B48496600636394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD19F7281B48496600636394 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD19F72A1B48496600636394 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD19F72B1B48496600636394 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FD19F72D1B48496600636394 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		FD19F72E1B48496600636394 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		FD19F7301B48496600636394 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		FD19F7311B48496600636394 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		FD19F72D1B48496600636394 /* ImagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagesViewController.h; sourceTree = "<group>"; };
+		FD19F72E1B48496600636394 /* ImagesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagesViewController.m; sourceTree = "<group>"; };
+		FD19F7301B48496600636394 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		FD19F7311B48496600636394 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		FD19F7341B48496600636394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD19F7361B48496600636394 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FD19F7391B48496600636394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		FD19F73F1B48496600636394 /* manantha_Universal_MultimediaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = manantha_Universal_MultimediaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD19F7441B48496600636394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD19F7451B48496600636394 /* manantha_Universal_MultimediaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = manantha_Universal_MultimediaTests.m; sourceTree = "<group>"; };
+		FD19F74F1B48497400636394 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		FD19F7511B48497B00636394 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FD19F7531B48498E00636394 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FD19F7551B48529D00636394 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		FD19F7571B4856EF00636394 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		FD19F7581B4856EF00636394 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		FD19F75C1B49AC1E00636394 /* FullViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullViewController.h; sourceTree = "<group>"; };
+		FD19F75D1B49AF7F00636394 /* FullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullViewController.m; sourceTree = "<group>"; };
+		FD19F75F1B4A11B800636394 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		FDE52B921B55D5A30066C728 /* TwitterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
+		FDE52B931B55D5BA0066C728 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
+		FDE52B951B55D8F00066C728 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FDE52B971B55D8F80066C728 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FDE52B991B5622420066C728 /* TweetDisplayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetDisplayView.h; sourceTree = "<group>"; };
+		FDE52B9A1B5622560066C728 /* TweetDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDisplayView.m; sourceTree = "<group>"; };
+		FDE52B9C1B574CBE0066C728 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +88,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE52B9D1B574CBE0066C728 /* Twitter.framework in Frameworks */,
+				FDE52B981B55D8F80066C728 /* Accounts.framework in Frameworks */,
+				FDE52B961B55D8F00066C728 /* Social.framework in Frameworks */,
+				FD19F7601B4A11B800636394 /* MediaPlayer.framework in Frameworks */,
+				FD19F7591B4856EF00636394 /* Photos.framework in Frameworks */,
+				FD19F75A1B4856EF00636394 /* PhotosUI.framework in Frameworks */,
+				FD19F7561B48529D00636394 /* AssetsLibrary.framework in Frameworks */,
+				FD19F7541B48498E00636394 /* UIKit.framework in Frameworks */,
+				FD19F7521B48497B00636394 /* AVFoundation.framework in Frameworks */,
+				FD19F7501B48497400636394 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +114,16 @@
 		FD19F71A1B48496600636394 = {
 			isa = PBXGroup;
 			children = (
+				FDE52B9C1B574CBE0066C728 /* Twitter.framework */,
+				FDE52B971B55D8F80066C728 /* Accounts.framework */,
+				FDE52B951B55D8F00066C728 /* Social.framework */,
+				FD19F75F1B4A11B800636394 /* MediaPlayer.framework */,
+				FD19F7571B4856EF00636394 /* Photos.framework */,
+				FD19F7581B4856EF00636394 /* PhotosUI.framework */,
+				FD19F7551B48529D00636394 /* AssetsLibrary.framework */,
+				FD19F7531B48498E00636394 /* UIKit.framework */,
+				FD19F7511B48497B00636394 /* AVFoundation.framework */,
+				FD19F74F1B48497400636394 /* AVKit.framework */,
 				FD19F7251B48496600636394 /* manantha_Universal_Multimedia */,
 				FD19F7421B48496600636394 /* manantha_Universal_MultimediaTests */,
 				FD19F7241B48496600636394 /* Products */,
@@ -86,10 +144,22 @@
 			children = (
 				FD19F72A1B48496600636394 /* AppDelegate.h */,
 				FD19F72B1B48496600636394 /* AppDelegate.m */,
-				FD19F72D1B48496600636394 /* FirstViewController.h */,
-				FD19F72E1B48496600636394 /* FirstViewController.m */,
-				FD19F7301B48496600636394 /* SecondViewController.h */,
-				FD19F7311B48496600636394 /* SecondViewController.m */,
+				FD1752801B4B51A6000EB8DF /* MediaPreview.h */,
+				FD1752811B4B51BC000EB8DF /* MediaPreview.m */,
+				FD19F72D1B48496600636394 /* ImagesViewController.h */,
+				FD19F72E1B48496600636394 /* ImagesViewController.m */,
+				FD19F7301B48496600636394 /* CameraViewController.h */,
+				FD19F7311B48496600636394 /* CameraViewController.m */,
+				FD19F75C1B49AC1E00636394 /* FullViewController.h */,
+				FD19F75D1B49AF7F00636394 /* FullViewController.m */,
+				FD1752831B4B7CB3000EB8DF /* PreviewController.h */,
+				FD1752841B4B7CC6000EB8DF /* PreviewController.m */,
+				FD1752861B4BA653000EB8DF /* PreviewVideoController.h */,
+				FD1752871B4BA695000EB8DF /* PreviewVideoController.m */,
+				FDE52B921B55D5A30066C728 /* TwitterViewController.h */,
+				FDE52B931B55D5BA0066C728 /* TwitterViewController.m */,
+				FDE52B991B5622420066C728 /* TweetDisplayView.h */,
+				FDE52B9A1B5622560066C728 /* TweetDisplayView.m */,
 				FD19F7331B48496600636394 /* Main.storyboard */,
 				FD19F7361B48496600636394 /* Images.xcassets */,
 				FD19F7381B48496600636394 /* LaunchScreen.xib */,
@@ -224,10 +294,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD19F7321B48496600636394 /* SecondViewController.m in Sources */,
+				FD1752881B4BA695000EB8DF /* PreviewVideoController.m in Sources */,
+				FD19F7321B48496600636394 /* CameraViewController.m in Sources */,
+				FD1752821B4B51BC000EB8DF /* MediaPreview.m in Sources */,
+				FDE52B9B1B5622560066C728 /* TweetDisplayView.m in Sources */,
 				FD19F72C1B48496600636394 /* AppDelegate.m in Sources */,
-				FD19F72F1B48496600636394 /* FirstViewController.m in Sources */,
+				FDE52B941B55D5BA0066C728 /* TwitterViewController.m in Sources */,
+				FD1752851B4B7CC6000EB8DF /* PreviewController.m in Sources */,
+				FD19F72F1B48496600636394 /* ImagesViewController.m in Sources */,
 				FD19F7291B48496600636394 /* main.m in Sources */,
+				FD19F75E1B49AF7F00636394 /* FullViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +494,7 @@
 				FD19F74B1B48496600636394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD19F74C1B48496600636394 /* Build configuration list for PBXNativeTarget "manantha_Universal_MultimediaTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +503,7 @@
 				FD19F74E1B48496600636394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

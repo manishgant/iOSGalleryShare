@@ -6,8 +6,17 @@
 //  Copyright (c) 2015 Manishgant. All rights reserved.
 //
 
-#ifndef manantha_Universal_Multimedia_TwitterViewController_h
-#define manantha_Universal_Multimedia_TwitterViewController_h
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
 
+@interface TwitterViewController : UIViewController
+<UITableViewDataSource, UITableViewDelegate>
 
-#endif
+@property (strong, nonatomic) IBOutlet UITableView *tweetTableView;
+@property (strong, nonatomic) NSArray *dataSource;
+
+@property (weak,nonatomic) NSURL *imageURL;
+
+@end
