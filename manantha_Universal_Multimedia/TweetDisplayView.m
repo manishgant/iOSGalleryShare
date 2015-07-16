@@ -20,6 +20,8 @@
     [super viewWillAppear:animated];
     NSURLRequest* request = [NSURLRequest requestWithURL:self->_imageURL cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
     
+    self.displayTweetWebView.scalesPageToFit =YES;
+    self.displayTweetWebView.frame = self.view.bounds;
     [self->_displayTweetWebView loadRequest:request];
     
 }

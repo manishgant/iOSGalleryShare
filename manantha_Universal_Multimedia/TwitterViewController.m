@@ -29,6 +29,18 @@
     
 }
 
+-(void) viewDidLoad {
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tweetTableView addSubview:refreshControl];
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self getTimelineTweets];
+    [self.tweetTableView reloadData];
+    [refreshControl endRefreshing];
+}
+
 /*
  Get the number of rows in the TableView
  */
@@ -55,14 +67,17 @@
     cell.textLabel.numberOfLines = 0;
     [cell.textLabel setText: tweet[@"text"]];
     
-    NSString *string = cell.textLabel.text;
-    NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-    NSArray *matches = [linkDetector matchesInString:string options:0 range:NSMakeRange(0, [string length])];
+    NSDictionary *entities = tweet[@"entities"];
+    NSArray *medias = entities[@"media"];
+    NSDictionary *ImageUrls = medias[0];
+    NSString *string = ImageUrls[@"media_url"];
     
-    if ((matches.count == 1)) {
+    if (string != nil) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    matches = nil;
+
     return cell;
     
 }
@@ -89,24 +104,25 @@
  */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString *string = cell.textLabel.text;
-    NSDataDetector *linkDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-    NSArray *matches = [linkDetector matchesInString:string options:0 range:NSMakeRange(0, [string length])];
-    for (NSTextCheckingResult *match in matches) {
-        if ([match resultType] == NSTextCheckingTypeLink) {
-            NSURL *url = [match URL];
-            NSLog(@"found URL: %@", url);
+    
+    NSDictionary *tweet = _dataSource[[indexPath row]];
+    NSDictionary *entities = tweet[@"entities"];
+    NSArray *medias = entities[@"media"];
+    NSDictionary *ImageUrls = medias[0];
+    NSString *string = ImageUrls[@"media_url"];
+    
+        if (string != nil) {
+            
+            NSURL *url = [NSURL URLWithString:ImageUrls[@"media_url"]];
+           
             self->_imageURL = url;
             
             // Perform Segue to webview with URL data
             [self performSegueWithIdentifier:@"displayImage" sender:self->_imageURL];
             
-        } else if(!([matches count] != 1)){
+        } else {
             [self timelineNoImageExeptionThrow];
         }
-        matches = nil;
-    }
     
 }
 

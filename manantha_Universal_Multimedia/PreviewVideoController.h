@@ -11,9 +11,6 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <Photos/Photos.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <Social/Social.h>
-#import <Accounts/Accounts.h>
-#import <Twitter/Twitter.h>
 
 /*
  Initialize the elements required to display the selected image

@@ -26,6 +26,7 @@
 		FD19F75A1B4856EF00636394 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F7581B4856EF00636394 /* PhotosUI.framework */; };
 		FD19F75E1B49AF7F00636394 /* FullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD19F75D1B49AF7F00636394 /* FullViewController.m */; };
 		FD19F7601B4A11B800636394 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD19F75F1B4A11B800636394 /* MediaPlayer.framework */; };
+		FDB5D6EC1B58130D0086D826 /* TwitterVideoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB5D6EB1B58130D0086D826 /* TwitterVideoUploader.m */; };
 		FDE52B941B55D5BA0066C728 /* TwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE52B931B55D5BA0066C728 /* TwitterViewController.m */; };
 		FDE52B961B55D8F00066C728 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE52B951B55D8F00066C728 /* Social.framework */; };
 		FDE52B981B55D8F80066C728 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDE52B971B55D8F80066C728 /* Accounts.framework */; };
@@ -74,6 +75,8 @@
 		FD19F75C1B49AC1E00636394 /* FullViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullViewController.h; sourceTree = "<group>"; };
 		FD19F75D1B49AF7F00636394 /* FullViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullViewController.m; sourceTree = "<group>"; };
 		FD19F75F1B4A11B800636394 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		FDB5D6EA1B5812EA0086D826 /* TwitterVideoUploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterVideoUploader.h; sourceTree = "<group>"; };
+		FDB5D6EB1B58130D0086D826 /* TwitterVideoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterVideoUploader.m; sourceTree = "<group>"; };
 		FDE52B921B55D5A30066C728 /* TwitterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterViewController.h; sourceTree = "<group>"; };
 		FDE52B931B55D5BA0066C728 /* TwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterViewController.m; sourceTree = "<group>"; };
 		FDE52B951B55D8F00066C728 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -160,6 +163,8 @@
 				FDE52B931B55D5BA0066C728 /* TwitterViewController.m */,
 				FDE52B991B5622420066C728 /* TweetDisplayView.h */,
 				FDE52B9A1B5622560066C728 /* TweetDisplayView.m */,
+				FDB5D6EA1B5812EA0086D826 /* TwitterVideoUploader.h */,
+				FDB5D6EB1B58130D0086D826 /* TwitterVideoUploader.m */,
 				FD19F7331B48496600636394 /* Main.storyboard */,
 				FD19F7361B48496600636394 /* Images.xcassets */,
 				FD19F7381B48496600636394 /* LaunchScreen.xib */,
@@ -303,6 +308,7 @@
 				FD1752851B4B7CC6000EB8DF /* PreviewController.m in Sources */,
 				FD19F72F1B48496600636394 /* ImagesViewController.m in Sources */,
 				FD19F7291B48496600636394 /* main.m in Sources */,
+				FDB5D6EC1B58130D0086D826 /* TwitterVideoUploader.m in Sources */,
 				FD19F75E1B49AF7F00636394 /* FullViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +422,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

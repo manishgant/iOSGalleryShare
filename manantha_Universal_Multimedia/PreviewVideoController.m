@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PreviewVideoController.h"
+#import "TwitterVideoUploader.h"
+
 
 @import AVFoundation;
 
@@ -189,12 +191,18 @@
 
 - (IBAction)onTweetVideoPressed:(id)sender {
     
+    ACAccountStore *account = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [account
+                                  accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
+    NSArray *arrayOfAccounts = [account
+                                accountsWithAccountType:accountType];
     
-    NSURL *url = [NSURL URLWithString:@"https://upload.twitter.com/1.1/media/upload.json"];
+     ACAccount *twitterAccount = [arrayOfAccounts lastObject];
     
     NSURL *videoURL = self->_opURL;
-    NSData *webData = [NSData dataWithContentsOfURL:videoURL];
+    NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+    
     
     // Get the size of the file in bytes.
     NSString *yourPath = [NSString stringWithFormat:@"%@", videoURL];
@@ -202,72 +210,18 @@
     NSDictionary *attrs = [man attributesOfItemAtPath:yourPath error: NULL];
     unsigned long long result = [attrs fileSize];
     
-    //[self tweetVideoStage1:webData :result];
-    [self tweetVideo:webData :result :1 :@"n/a"];
-    
-}
-
--(void)tweetVideo:(NSData *)videoData :(int)videoSize :(int)mode :(NSString *)mediaID {
-    
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account
-                                  accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-
+    [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount withCompletion: ^(void){
+        
+        NSLog(@"Video Upload Success!!");
+        
+    }
+     
+    ];
    
-    NSURL *twitterVideo = [NSURL URLWithString:@"https://upload.twitter.com/1.1/media/upload.json"];
-    
-    // Set the parameters for the first twitter video request.
-    NSDictionary *postDict;
-    
-    if (mode == 1) {
-        
-        postDict = @{@"command": @"INIT",
-                     @"total_bytes" : [NSString stringWithFormat:@"%d",videoSize],
-                     @"media_type" : @"video/mp4"};
-    }
-    
-    else if (mode == 2) {
-        
-        postDict = @{@"command": @"APPEND",
-                     @"media_id" : mediaID,
-                     @"segment_index" : @"0",
-                     @"media" : videoData };
-    }
-    
-    else if (mode == 3) {
-        
-        postDict = @{@"command": @"FINALIZE",
-                     @"media_id" : mediaID };
-    }
-    
-    SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterVideo parameters:postDict];
-    
-    // Set the account and begin the request.
-    postRequest.account = [account.accounts lastObject];
-    [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        
-        if (!error) {
-            
-            if (mode == 1) {
-                
-                // Parse the returned data for the JSON string
-                // which contains the media upload ID.
-                NSMutableDictionary *returnedData = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:&error];
-                NSString *tweetID = [NSString stringWithFormat:@"%@", [returnedData valueForKey:@"media_id_string"]];
-                
-                [self tweetVideo:videoData :videoSize :2 :tweetID];
-            }
-            
-            else if (mode == 2) {
-                [self tweetVideo:videoData :videoSize :3 :mediaID];
-            }
-        }
-        
-        else {
-            NSLog(@"Error stage %d - %@", mode, error);
-        }
-    }];
 }
+
+typedef void(^myCompletion)(void);
+
 
 
 
