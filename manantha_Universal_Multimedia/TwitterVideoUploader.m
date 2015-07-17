@@ -27,7 +27,7 @@
 
 
 
-+(void)uploadTwitterVideo:(NSData*)videoData account:(ACAccount*)account withCompletion:(dispatch_block_t)completion{
++(void)uploadTwitterVideo:(NSData*)videoData account:(ACAccount*)account path:(NSString *)path withCompletion:(dispatch_block_t)completion{
     
     NSURL *twitterPostURL = [[NSURL alloc] initWithString:@"https://upload.twitter.com/1.1/media/upload.json"];
     
@@ -47,19 +47,21 @@
             
             NSString *mediaID = [NSString stringWithFormat:@"%@", [returnedData valueForKey:@"media_id_string"]];
             
-            [TwitterVideoUploader tweetVideoStage2:videoData mediaID:mediaID account:account withCompletion:completion];
+            [self tweetVideoStage2:videoData mediaID:mediaID account:account path:path withCompletion:completion];
             
             NSLog(@"Stage1 success, mediaID -> %@", mediaID);
         }
     }];
 }
 
-+(void)tweetVideoStage2:(NSData*)videoData mediaID:(NSString *)mediaID account:(ACAccount*)account withCompletion:(dispatch_block_t)completion{
++(void)tweetVideoStage2:(NSData*)videoData mediaID:(NSString *)mediaID account:(ACAccount*)account path:(NSString *)path withCompletion:(dispatch_block_t)completion{
     
     NSURL *twitterPostURL = [[NSURL alloc] initWithString:@"https://upload.twitter.com/1.1/media/upload.json"];
     NSDictionary *postParams = @{@"command": @"APPEND",
                                  @"media_id" : mediaID,
                                  @"segment_index" : @"0",
+                                 @"--file": path,
+                                 @"--file-field" : @"media"
                                  };
     
     SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterPostURL parameters:postParams];
@@ -69,7 +71,7 @@
     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         NSLog(@"Stage2 HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
         if (!error) {
-            [TwitterVideoUploader tweetVideoStage3:videoData mediaID:mediaID account:account withCompletion:completion];
+            [self tweetVideoStage3:videoData mediaID:mediaID account:account withCompletion:completion];
         }
         else {
             NSLog(@"Error stage 2 - %@", error);
@@ -93,13 +95,13 @@
         if (error) {
             NSLog(@"Error stage 3 - %@", error);
         } else {
-            [TwitterVideoUploader tweetVideoStage4:videoData mediaID:mediaID account:account withCompletion:completion];
+            [self tweetVideoStage4:videoData mediaID:mediaID account:account withCompletion:completion];
         }
     }];
 }
 
 +(void)tweetVideoStage4:(NSData*)videoData mediaID:(NSString *)mediaID account:(ACAccount*)account withCompletion:(dispatch_block_t)completion{
-   
+    
     NSDate *date = [[NSDate alloc]init];
     
     //Declare Date Formatter to format date according to problem
@@ -123,7 +125,7 @@
     
     // Set the parameters for the third twitter video request.
     NSDictionary *postParams = @{@"status": statusContent,
-                                 @"media_id" : mediaID};
+                                 @"media_ids" : [NSString  stringWithFormat: @"%@,%@",mediaID,mediaID]};
     
     SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterPostURL parameters:postParams];
     postRequest.account = account;

@@ -58,7 +58,7 @@
 }
 
 /*
- The following method saves the Photo captured 
+ The following method saves the Photo captured
  along with outputting device & time info to the log
  */
 
@@ -103,6 +103,10 @@
     
 }
 
+/*
+ Use Tweet Composer sheet to tweet the image with status
+ */
+
 - (IBAction)onTweetImagePressed:(id)sender {
     
     
@@ -134,14 +138,22 @@
         
         [tweetSheet addImage:self->_displayImage];
         
-        [self presentViewController:tweetSheet animated:YES completion:nil];
+        [self presentViewController:tweetSheet animated:YES completion:^(void) {
+            NSLog(@"Photo Uploaded to Twitter");
+        }
+         ];
         
     } else {
         
-        [self twitterExceptionHandling:@"Please Sign in to Twitter to post the picture"];
+        [self twitterExceptionHandling:@"Please Sign in and allow access to Twitter to post the picture"];
     }
     
 }
+
+/*
+ Exception Handling to warn user to sign in and give access to Twitter credentials
+ before posting the picture
+ */
 
 -(void)twitterExceptionHandling:(NSString *)message {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops!!!" message:message preferredStyle:UIAlertControllerStyleAlert];

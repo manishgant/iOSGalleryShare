@@ -146,6 +146,7 @@
         [account requestAccessToAccountsWithType:accountType
                                          options:nil completion:^(BOOL granted, NSError *error)
          {
+             
              if (granted == YES)
              {
                  NSArray *arrayOfAccounts = [account

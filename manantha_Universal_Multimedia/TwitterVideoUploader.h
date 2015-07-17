@@ -14,7 +14,7 @@
 
 @interface TwitterVideoUploader : NSObject
 
-+(void)uploadTwitterVideo:(NSData*)videoData account:(ACAccount*)account withCompletion:(dispatch_block_t)completion;
++(void)uploadTwitterVideo:(NSData*)videoData account:(ACAccount*)account path:(NSString *)path withCompletion:(dispatch_block_t)completion;
 
 +(BOOL)userHasAccessToTwitter;
 

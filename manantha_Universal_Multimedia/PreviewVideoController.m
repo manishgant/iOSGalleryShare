@@ -189,38 +189,108 @@
     
 }
 
+
 - (IBAction)onTweetVideoPressed:(id)sender {
     
-    ACAccountStore *account = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [account
-                                  accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    
-    NSArray *arrayOfAccounts = [account
-                                accountsWithAccountType:accountType];
-    
-     ACAccount *twitterAccount = [arrayOfAccounts lastObject];
-    
-    NSURL *videoURL = self->_opURL;
-    NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
-    
-    
-    // Get the size of the file in bytes.
-    NSString *yourPath = [NSString stringWithFormat:@"%@", videoURL];
-    NSFileManager *man = [NSFileManager defaultManager];
-    NSDictionary *attrs = [man attributesOfItemAtPath:yourPath error: NULL];
-    unsigned long long result = [attrs fileSize];
-    
-    [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount withCompletion: ^(void){
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
         
-        NSLog(@"Video Upload Success!!");
+    {
+        ACAccountStore *account = [[ACAccountStore alloc] init];
+        ACAccountType *accountType = [account
+                                      accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        
+        NSArray *arrayOfAccounts = [account
+                                    accountsWithAccountType:accountType];
+        
+        ACAccount *twitterAccount = [arrayOfAccounts lastObject];
+        
+        NSURL *videoURL = self->_opURL;
+        NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
+        
+        
+        // Get the size of the file in bytes.
+        NSString *yourPath = [NSString stringWithFormat:@"%@", videoURL];
+        NSFileManager *man = [NSFileManager defaultManager];
+        NSDictionary *attrs = [man attributesOfItemAtPath:yourPath error: NULL];
+        unsigned long long result = [attrs fileSize];
+        
+        if (result < 15728640) {
+            
+            [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount path:yourPath withCompletion: ^(void){
+                NSLog(@"Video Upload Success!!");
+            }];
+            
+        } else {
+            [self videoSizeTooLarge];
+            
+        }
+        
+    } else {
+        [self twitterExceptionHandling:@"Please Sign in and allow access to Twitter to upload the video"];
         
     }
-     
-    ];
-   
 }
 
-typedef void(^myCompletion)(void);
+/*
+ Throw exception when video file size
+ is too large
+ */
+
+-(void)videoSizeTooLarge {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Video size too large!!!" message:@"Please upload video less than 15 MB in size" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"User pressed OK");
+                                   }];
+    
+    
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+
+/*
+ Exception Handling to warn user to sign in and give access to Twitter credentials
+ before posting the picture
+ */
+
+-(void)twitterExceptionHandling:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops!!!" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"User pressed Cancel");
+                                   }];
+    
+    UIAlertAction *settingsAction = [UIAlertAction
+                                     actionWithTitle:NSLocalizedString(@"Settings", @"Settings action")
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         NSLog(@"Settings Pressed");
+                                         
+                                         //code for opening settings app in iOS 8
+                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                         
+                                     }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:settingsAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+
+
 
 
 
