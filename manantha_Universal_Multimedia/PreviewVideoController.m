@@ -204,32 +204,38 @@
         
         ACAccount *twitterAccount = [arrayOfAccounts lastObject];
         
+        
         NSURL *videoURL = self->_opURL;
+        NSString *urlPath = [videoURL path];
+        
+
+    
         NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
         
-        
-        // Get the size of the file in bytes.
-        NSString *yourPath = [NSString stringWithFormat:@"%@", videoURL];
-        NSFileManager *man = [NSFileManager defaultManager];
-        NSDictionary *attrs = [man attributesOfItemAtPath:yourPath error: NULL];
-        unsigned long long result = [attrs fileSize];
-        
-        if (result < 15728640) {
+            // Get the size of the file in bytes.
+            NSString *yourPath = [NSString stringWithFormat:@"%@", videoURL];
+            NSFileManager *man = [NSFileManager defaultManager];
+            NSDictionary *attrs = [man attributesOfItemAtPath:yourPath error: NULL];
+            unsigned long long result = [attrs fileSize];
             
-            [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount path:yourPath withCompletion: ^(void){
-                NSLog(@"Video Upload Success!!");
-            }];
-            
-        } else {
-            [self videoSizeTooLarge];
-            
-        }
+            if (result < 15728640) {
+                
+                [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount path:yourPath withCompletion: ^(void){
+                    NSLog(@"Video Upload Success!!");
+                }];
+                
+            } else {
+                [self videoSizeTooLarge];
+                
+            }
         
     } else {
         [self twitterExceptionHandling:@"Please Sign in and allow access to Twitter to upload the video"];
         
     }
 }
+
+
 
 /*
  Throw exception when video file size
@@ -288,6 +294,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
 
 
 

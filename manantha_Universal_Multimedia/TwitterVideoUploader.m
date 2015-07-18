@@ -25,7 +25,18 @@
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
-
+/*
+ Twitter video upload is using twitter's REST API. This is done through
+ 3 steps, INIT, APPEND and FINALIZE to upload the video.
+ 
+ A fourth step is also required, which posts the status with the uploaded 
+ video.
+ 
+ Each INIT, APPEND and FINALIZE methods return URL response from Twitter containing status code
+ and media_id to proceed to subsequent steps
+ 
+ The response from twitter and media_ids are printed to the log to check for consistency
+ */
 
 +(void)uploadTwitterVideo:(NSData*)videoData account:(ACAccount*)account path:(NSString *)path withCompletion:(dispatch_block_t)completion{
     
@@ -49,7 +60,7 @@
             
             [self tweetVideoStage2:videoData mediaID:mediaID account:account path:path withCompletion:completion];
             
-            NSLog(@"Stage1 success, mediaID -> %@", mediaID);
+            NSLog(@"Stage1 INIT success, mediaID -> %@", mediaID);
         }
     }];
 }
@@ -60,8 +71,8 @@
     NSDictionary *postParams = @{@"command": @"APPEND",
                                  @"media_id" : mediaID,
                                  @"segment_index" : @"0",
-                                 @"--file": path,
-                                 @"--file-field" : @"media"
+                                 //@"--file": path,
+                                 //@"--file-field" : @"media"
                                  };
     
     SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterPostURL parameters:postParams];
@@ -69,7 +80,7 @@
     
     [postRequest addMultipartData:videoData withName:@"media" type:@"video/mp4" filename:@"video"];
     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        NSLog(@"Stage2 HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+        NSLog(@"Stage2 APPEND HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
         if (!error) {
             [self tweetVideoStage3:videoData mediaID:mediaID account:account withCompletion:completion];
         }
@@ -91,10 +102,11 @@
     // Set the account and begin the request.
     postRequest.account = account;
     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        NSLog(@"Stage3 HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+        NSLog(@"Stage3 FINALIZE HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
         if (error) {
             NSLog(@"Error stage 3 - %@", error);
         } else {
+            [NSThread sleepForTimeInterval:5];
             [self tweetVideoStage4:videoData mediaID:mediaID account:account withCompletion:completion];
         }
     }];
@@ -123,14 +135,18 @@
     NSURL *twitterPostURL = [[NSURL alloc] initWithString:@"https://api.twitter.com/1.1/statuses/update.json"];
     NSString *statusContent = [NSString stringWithFormat:@"@MobileApp4 %@ %@ %@ %@",andrewID,dateString,DeviceInfo,OSVersion];
     
-    // Set the parameters for the third twitter video request.
-    NSDictionary *postParams = @{@"status": statusContent,
-                                 @"media_ids" : [NSString  stringWithFormat: @"%@,%@",mediaID,mediaID]};
+    NSLog(@" This is the media_id in last stage : %@",mediaID);
     
-    SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterPostURL parameters:postParams];
+    // Set the parameters for the third twitter video request.
+    NSMutableDictionary *parameters =
+    [[NSMutableDictionary alloc] init];
+    [parameters setObject:statusContent forKey:@"status"];
+    [parameters setObject:@[mediaID] forKey:@"media_ids"];
+    
+    SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:twitterPostURL parameters:parameters];
     postRequest.account = account;
     [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-        NSLog(@"Stage4 HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+        NSLog(@"Stage4 POST Status HTTP Response: %li, %@", (long)[urlResponse statusCode], [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
         if (error) {
             NSLog(@"Error stage 4 - %@", error);
         } else {
