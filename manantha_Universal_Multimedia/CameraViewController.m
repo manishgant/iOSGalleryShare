@@ -59,6 +59,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     // Create the AVCaptureSession.
     self.session = [[AVCaptureSession alloc] init];
+    [self.session setSessionPreset:AVCaptureSessionPreset640x480];
     
     // Setup the preview view.
     self.previewView.session = self.session;

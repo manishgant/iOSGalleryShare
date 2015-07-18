@@ -106,7 +106,7 @@
         if (error) {
             NSLog(@"Error stage 3 - %@", error);
         } else {
-            [NSThread sleepForTimeInterval:5];
+            [NSThread sleepForTimeInterval:1];
             [self tweetVideoStage4:videoData mediaID:mediaID account:account withCompletion:completion];
         }
     }];
