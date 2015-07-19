@@ -83,7 +83,7 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-
+    
     return cell;
     
 }
@@ -115,21 +115,35 @@
     NSDictionary *entities = tweet[@"entities"];
     NSArray *medias = entities[@"media"];
     NSDictionary *ImageUrls = medias[0];
-    NSString *string = ImageUrls[@"media_url"];
+    NSString *media_type = ImageUrls[@"expanded_url"];
+    NSString *isMediaTweet = ImageUrls[@"media_url"];
     
-        if (string != nil) {
-            
+    if (isMediaTweet != nil) {
+        NSString *expression = @"^(.*?(video)[^$]*)$";
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        NSTextCheckingResult *match = [regex firstMatchInString:media_type options:0 range:NSMakeRange(0, [media_type length])];
+        
+        if (match){
+            NSURL *url = [NSURL URLWithString:ImageUrls[@"expanded_url"]];
+            self ->_imageURL = url;
+            // Perform Segue to webview with URL data
+            [self performSegueWithIdentifier:@"displayImage" sender:self->_imageURL];
+
+        } else {
             NSURL *url = [NSURL URLWithString:ImageUrls[@"media_url"]];
-           
             self->_imageURL = url;
+            NSLog(@"Type of Tweet Clicked : %@",media_type);
             
             // Perform Segue to webview with URL data
             [self performSegueWithIdentifier:@"displayImage" sender:self->_imageURL];
             
-        } else {
-            [self timelineNoImageExeptionThrow];
         }
-    
+    }
+    else {
+        
+        [self timelineNoImageExeptionThrow];
+    }
 }
 
 /*

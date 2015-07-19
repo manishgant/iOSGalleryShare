@@ -221,8 +221,12 @@
             if (result < 15728640) {
                 
                 [TwitterVideoUploader uploadTwitterVideo:videoData account:twitterAccount path:yourPath withCompletion: ^(void){
-                    NSLog(@"Video Upload Success!!");
+                 
+                    [self videoUploadInform];
+                    
                 }];
+                
+                [self videoUploadingInform];
                 
             } else {
                 [self videoSizeTooLarge];
@@ -235,6 +239,48 @@
     }
 }
 
+
+/*
+ Inform user that the video has been uploaded
+ */
+
+-(void)videoUploadInform {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Video Uploaded!!!" message:@"Check the timeline to view your video :)" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"User pressed OK");
+                                   }];
+    
+    
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+/*
+ Inform user that the video is uploading
+ */
+
+-(void)videoUploadingInform {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Uploading......" message:@"Please hold on while your video is being uploaded" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"User pressed OK");
+                                   }];
+    
+    
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 
 /*
@@ -258,6 +304,7 @@
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 
 
 
@@ -294,13 +341,5 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
-
-
-
-
-
-
-
-
 
 @end
